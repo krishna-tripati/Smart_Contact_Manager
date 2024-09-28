@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html class="light" lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:fragment="parent(content,title,script)">
+
+<head>
+    <meta charset="UTF-8">
+    <title  data-th-replace="${title}">Base Page</title>
+<!--    output.css add-->
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+
+    <!--    Style.css add-->
+    <link rel="stylesheet" data-th-href="@{'/css/Style.css'}">
+
+    <!--    flowbit cdn add -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+
+
+
+    <!--    font awesome cdn-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+<body class="dark:bg-gray-900 dark:text-white">
+
+<!-- header-->
+<!--when user was login that time user-navbar working-->
+<div data-th-if="${loggedInUser}">
+    <div data-th-replace="~{user/user_navbar::user-navbar}"></div> <br/> <br/>  <br/>
+</div>
+
+
+<!--when user was not login that time navbar working-->
+<div data-th-unless="${loggedInUser}">
+    <div data-th-replace="~{navbar :: navbar}"></div> <br/> <br/> <br/> <br/>
+</div>
+
+
+<!--main content-->
+<div>
+    <section data-th-replace="${content}"></section>
+
+</div>
+
+
+<!--flowbit script-->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+<!--sweetalert cdn-->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script data-th-src="@{'/js/script.js'}"></script>
+<script data-th-src="@{'/js/admin.js'}"></script>
+
+<th:block data-th-replace="${script}"></th:block>
+
+</body>
+</html>

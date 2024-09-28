@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dashboard</title>
+</head>
+<body>
+<div id="content">
+    <!--side bar-->
+    <!--when user was login that time sidebar working-->
+    <div data-th-if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar::sidebar}"></div>
+    </div>
+
+
+    <div style=" display: flex;
+    justify-content: center; padding-top: 10px;
+    align-items: center; padding-left: 100px; ">
+        <div class="flex justify-center flex-col items-center" >
+            <h1 class="text-3xl">Welcome to Dashboard </h1>
+            <img  data-th-src="@{'/img/contact-logo.png'}"> </img>
+
+        </div>
+    </div>
+</div>
+<script>
+    console.log("profile page");
+
+</script>
+</body>
+</html>

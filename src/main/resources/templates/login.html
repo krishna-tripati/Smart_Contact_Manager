@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+
+    <!--    flowbit add-->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+
+</head>
+<body>
+<div id="content">
+
+    <div class="grid  grid-cols-12">
+        <div class="col-span-4 "></div>
+        <!--        main div are center-->
+        <div class="col-span-4">
+            <div class="block  p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Login Here</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Start managing contact</p>
+
+                <!---alert message-->
+                <div data-th-replace="message::messagebox"></div>
+
+                <!-- Invalid username and password msg-->
+                <div data-th-if="${param.error}" class="text-red-600 text-center" >
+                    Invalid Username and Password
+                </div>
+
+                <!-- logout msg -->
+                <div data-th-if="${param.logout}" class="text-green-600 text-center">
+                    You have been logged out
+                </div>
+
+
+                <!-- this is form--->
+                <form data-th-action="@{'/authenticate'}" method="post"  class="mt-5" novalidate> <!-- when submit button click then form goes to the do-login process -->
+
+
+                    <!--                    Username field-->
+
+                    <div class="mb-3">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input name="email" type="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required />
+
+                    </div>
+
+                    <!---Password field-->
+                    <div class="mb-3">
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input name="password" type="password" id="password"  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+
+                    </div>
+
+                    <!--submit button-->
+                    <div class="mb-3 flex justify-center space-x-3">
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button>
+                        <button type="reset" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Reset</button>
+
+                    </div>
+
+                </form>
+
+                <!--- Sign with google button-->
+
+                <div class="google-login flex justify-center mt-10">
+                    <a class="border px-8 py-2  login-with-google-btn  "
+                       data-th-href="@{'/oauth2/authorization/google'}" >
+                        Login with Google
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+    console.log("login page");
+
+</script>
+
+<!--flowbit script-->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+</body>
+</html>

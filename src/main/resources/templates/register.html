@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+<head>
+    <meta charset="UTF-8">
+    <title>SignUp</title>
+</head>
+<body>
+
+<div id="content">
+<!--    total 12 col grid-->
+    <div class="grid  grid-cols-12">
+        <div class="col-span-4 "></div>
+<!--        main div are center-->
+        <div class="col-span-4">
+            <div class="block  p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+
+                <!---alert message-->
+                <div data-th-replace="message::messagebox"></div>
+
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Signup Here</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">Start managing contact on cloud</p>
+
+                <!-- this is form--->                             <!--th:object use for access this property --->
+                <form data-th-action="@{'/do-register'}" method="post" th:object="${userForm}" class="mt-5" novalidate> <!-- when submit button click then form goes to the do-register link -->
+<!--                      name field-->
+                    <div class="mb-3">
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                       <!--  th:field="*{}" to access the field of userform-->
+                        <input type="text" id="name" th:field="*{name}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Your Name" required />
+
+<!--                        form validation when data is not filling to the register from-->
+                        <p data-th-if="${#fields.hasErrors('name')}"
+                           data-th-errors="*{name}"
+                          class="text-red-600 px-1 py-2"> <p/>
+
+
+                    </div>
+
+<!--                    email field-->
+
+                    <div class="mb-3">
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" id="email" th:field="*{email}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required />
+
+                        <p data-th-if="${#fields.hasErrors('email')}"
+                           data-th-errors="*{email}"
+                           class="text-red-600 px-1 py-2"> <p/>
+                    </div>
+
+                    <!---Password field-->
+                    <div class="mb-3">
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" id="password" th:field="*{password}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+
+                        <p data-th-if="${#fields.hasErrors('password')}"
+                           data-th-errors="*{password}"
+                           class="text-red-600 px-1 py-2"> <p/>
+
+                    </div>
+
+                    <!---Contact field-->
+
+                    <div class="mb-3">
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact Number</label>
+                        <input type="number" id="phone" th:field="*{phoneNumber}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+
+                        <p data-th-if="${#fields.hasErrors('phoneNumber')}"
+                           data-th-errors="*{phoneNumber}"
+                           class="text-red-600 px-1 py-2"> <p/>
+
+                    </div>
+
+                    <!---about field-->
+                    <div class="mb-3">
+                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">About</label>
+                        <textarea id="message" th:field="*{about}" rows="6" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write something about yourself"></textarea>
+
+                    </div>
+
+                    <!--submit button-->
+                    <div class="mb-3 flex justify-center space-x-3">
+                        <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">SignUp</button>
+                        <button type="reset" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Reset</button>
+
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<script>
+    console.log("SingUp page");
+
+</script>
+
+</body>
+</html>

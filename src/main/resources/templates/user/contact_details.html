@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}">
+
+<head>
+    <meta charset="UTF-8">
+    <title data-th-text="${loggedInUser.name}" >Profile</title>
+
+</head>
+<body>
+<div id="content">
+    <!--side bar-->
+    <!--    when user was login that time sidebar working-->
+    <div data-th-if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar::sidebar}"></div>
+    </div>
+
+
+    <div  style="height: 1000px">
+        <div class="flex justify-center flex-col items-center text-center" style="padding-top: 40px;">
+            <h1 class="text-5xl">Contact Details</h1> </br>
+
+            <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700" style=" width: 110%; height: 400px; padding-top: 50px;">
+                <div class="flex flex-col items-center pb-10 ">
+                    <img class="w-24 h-24 mb-3 rounded-full shadow-lg"  th:src="${cloudinaryImagePublicId}" onerror=" this.src='/img/telephone.png'" alt="Bonnie image"/>
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white"  th:text="${contact.name}">Bonnie Green</h5>
+                    <span class="text-sm text-gray-500 dark:text-gray-400" th:text="${contact.email}">Visual Designer</span>
+                    </br>  <p class="text-xl font-semibold text-gray-600"  th:text="${contact.phoneNumber}">{{ phone number }}</p>
+                    </br>   <p class="text-xl font-semibold text-gray-600"  th:text="${contact.address}">{{ about }}</p>
+                    </br>   <p class="text-xl font-semibold text-gray-600"  th:text="${contact.description}">{{ about }}</p>
+
+                </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<script>
+    console.log("contact details");
+
+</script>
+
+</body>
+</html>
