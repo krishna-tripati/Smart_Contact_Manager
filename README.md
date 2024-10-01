@@ -1,3 +1,6 @@
+Smart Contact Manager
+Technology Used: Java, Spring Boot, Spring Data JPA, Spring Security, Thymeleaf, MySql, HTML, CSS, Tailwindcss
+
 Signup Form and Form Validation
 ![sign up form validation](https://github.com/user-attachments/assets/12751b31-efbf-4b50-8840-29d5922e480d)
 
